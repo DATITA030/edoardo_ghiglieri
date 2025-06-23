@@ -44,3 +44,8 @@ numero_inserito = int(input())
 for n in range (numero_inserito, numero_inserito*11, numero_inserito):
     print (n)
 print ()
+
+#introduzione pass
+for i in range (2, 10):
+    pass                #pass si può utilizzare per lasciare in sospeso un ciclo for
+print ('x')
