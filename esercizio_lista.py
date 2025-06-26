@@ -29,17 +29,17 @@ for n in range (0,len(numeri)):
 print ('il numero minore si trova nella posizione:', min_position)
 #finalmewnte è funzionante...
 
-#secondo metodo, preso da internet la funzione min/max
+'''#secondo metodo, preso da internet la funzione min/max
 index_max = numeri.index (max(numeri))
 index_min = numeri.index (min(numeri))
 print  (index_max)
-print  (index_min)
+print  (index_min)'''
 
 #esercizio due:
 voti=[]
 flag = True
-while flag==True:
-    voti.append (int(input('inserisci voto:')))
+while flag:
+    voti.append (float(input('inserisci voto:')))
     conferma = (input('inserire un altro voto? y=yes n=no'))
     if conferma != 'y':
         flag=False
@@ -48,4 +48,6 @@ print (voti)
 index_max = max(voti)
 index_min = min(voti)
 print  ('il voto migliore è ', index_max)
+print ('l\'indice del voto migliore è', voti.index(index_max))
 print  ('il voto peggiore è ',index_min)
+print ('l\'indice del voto peggiore è', voti.index(index_min))

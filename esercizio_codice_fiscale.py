@@ -1,16 +1,16 @@
 
-surname = input('inserisci Cognome: ').upper().strip() #.replace(' ','')
-name = input('inserisci Nome: ').upper().strip() #.replace(' ','')
-sesso = input('inserisci il tuo sesso: M o F ').upper().strip()
-day_born = input('inserisci giorno di nascita "GG": ').strip()
-month_born = input('inserisci mese di nascita: ').upper().strip()
-year_born = input('inserisci anno di nascita "YYYY": ').strip()
-luogo_di_nascita = input('inserisci il tuo comune di nascita: ').upper().strip()
+surname = input('inserisci Cognome: ').upper().strip() or 'XXX' #.replace(' ','')
+name = input('inserisci Nome: ').upper().strip() or 'XXX' #.replace(' ','')
+sesso = input('inserisci il tuo sesso: M o F ').upper().strip() or 'M'
+day_born = input('inserisci giorno di nascita "GG": ').strip() or 'OO'
+month_born = input('inserisci mese di nascita: ').upper().strip() or 'OO'
+year_born = input('inserisci anno di nascita "YYYY": ').strip() or 'OOOO'
+luogo_di_nascita = input('inserisci il tuo comune di nascita: ').upper().strip() or 'NULL'
 
 tabella_mesi1 = {'GENNAIO':'A', 'FEBBRAIO':'B', 'MARZO':'C', 'APRILE':'D', 'MAGGIO':'E', 'GIUGNO':'H', 'LUGLIO':'L', 'AGOSTO':'M', 'SETTEMBRE':'P', 'OTTOBRE':'R', 'NOVEMBRE':'S', 'DICEMBRE':'T'}
 tabella_mesi2 = {'01':'A', '02':'B', '03':'C', '04':'D', '05':'E', '06':'H', '07':'L', '08':'M', '09':'P', '10':'R', '11':'S', '12':'T'}
 
-tabella_nascita = {'MILANO' : 'F205', 'ROMA' : 'H501'}
+tabella_nascita = {'NULL' : 'X000', 'MILANO' : 'F205', 'ROMA' : 'H501'}
 
 caratteri_pari = {'0':	'0',	'9':	'9',	'I':	'8',	'R':	'17', '1':	'1',	'A':	'0',	'J':	'9',	'S':	'18', '2':	'2',	'B':	'1',	'K':	'10',	'T':	'19', '3':	'3',	'C':	'2',	'L':	'11',	'U':	'20', '4':	'4',	'D':	'3',	'M':	'12',	'V':	'21', '5':	'5',	'E':	'4',	'N':	'13',	'W':	'22', '6':	'6',	'F':	'5',	'O':	'14',	'X':	'23', '7':	'7',	'G':	'6',	'P':	'15',	'Y':	'24', '8':	'8',	'H':	'7',	'Q':	'16',	'Z':	'25'}
 lista_caratteri_pari = list(caratteri_pari.keys())
@@ -54,11 +54,13 @@ for i in range(0, len(lista_surname)):
             codice_fiscale.append(lista_surname[i])
     else:
         pass
+while len(codice_fiscale)<3:
+    codice_fiscale.append('X')
 
 #codice nome
 
 for i in range(0, len(lista_name)):
-    if lista_name[i] != 'A' and lista_name[i] != 'E' and lista_name[i] != 'I' and lista_name[i] != 'O' and lista_name[i] != 'U'and lista_surname[i] != ' ':
+    if lista_name[i] != 'A' and lista_name[i] != 'E' and lista_name[i] != 'I' and lista_name[i] != 'O' and lista_name[i] != 'U'and lista_name[i] != ' ':
         codice_fiscale.append(lista_name[i])
         if len(codice_fiscale) > 5:
             break
@@ -72,11 +74,17 @@ for i in range(0, len(lista_name)):
             codice_fiscale.append(lista_name[i])
     else:
         pass
+while len(codice_fiscale)<6:
+    codice_fiscale.append('X')
 
 #codice anno
 
 codice_fiscale.append(year_born[2])
 codice_fiscale.append(year_born[3])
+
+'''while len(codice_fiscale) <8:
+    print ('hai sbagliato qualcosa, riprova')
+    break'''
 
 #codice mese di nascita
 
@@ -104,6 +112,9 @@ else:
         else:
             pass
 
+'''while len(codice_fiscale) <9:
+    print ('hai sbagliato qualcosa, riprova')
+    break'''
 
 #codice sesso, giorno di nascita
 
@@ -116,6 +127,9 @@ else:
     codice_fiscale.append(day_born[0])
     codice_fiscale.append(day_born[1])
 
+'''while len(codice_fiscale) <11:
+    print ('hai sbagliato qualcosa, riprova')
+    break'''
 #comune di nascita
 contatore2 = 0
 for chiave, valore in tabella_nascita.items():
@@ -128,6 +142,11 @@ for chiave, valore in tabella_nascita.items():
         codice_fiscale.append(codice_comune[2])
         codice_fiscale.append(codice_comune[3])
 
+'''while len(codice_fiscale) <15:
+    print ('hai sbagliato qualcosa, riprova')
+    break'''
+
+#ultima letgtera di controllo
 somma_pari = 0
 for i in range (0, len(codice_fiscale)):
     #print ('1')
@@ -164,12 +183,11 @@ for chiave,valore in conversione_numerica.items():
             pass
         else:
             break
+'''while len(codice_fiscale) <16:
+    print ('hai sbagliato qualcosa, riprova')
+    break'''
 
-
-
-
-
-
+print ('Il tuo codice fiscale è:')
 print(' '.join(codice_fiscale))
 
 
